@@ -6,28 +6,28 @@ import { MessagePattern, EventPattern } from '@nestjs/microservices';
 export class AppController {
   private logger = new Logger('AppController');
 
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @MessagePattern('add')
-  async saveData(data: any)  {
+  async saveData(data: any) {
     this.logger.log('Post Data Microservice.... from TCP');
     return this.appService.saveData(data);
   }
 
   @MessagePattern('get')
-  async getData(data: any)  {
+  async getData(data: any) {
     this.logger.log('Get Microservice.... from TCP');
     return this.appService.getData();
   }
-  
+
   @MessagePattern('get_micro_user')
-  async CallAdminMicroservice(data: any)  {
+  async CallAdminMicroservice(data: any) {
     this.logger.log('Admin Microservice.... from TCP');
     return this.appService.callUserMicroservice();
   }
 
   @EventPattern('event')
-  async getByEvent(data: any)  {
+  async getByEvent(data: any) {
     this.logger.log('Get Microservice.... from TCP using Event');
   }
 
